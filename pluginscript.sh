@@ -1,3 +1,7 @@
+# Checks if .../AC0/online has changed in the last second. If yes, plays sound and sends notification.
+
+# Set as executable and schedule or autostart by your preferred method. You could even run it yourself if you feel inclined.
+
 #!/bin/sh
 Storage=0
 while [ 1 ]
