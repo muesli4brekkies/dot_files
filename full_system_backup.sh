@@ -14,7 +14,7 @@ date=$(date "+%F")
 backupfile="$backdest/$distro-$type-$date.tar.gz"
 
 # Exclude file location
-exclude_file="/home/muesli/bin/root/backup/exclude_file"
+exclude_file="~/.bin/exclude_file"
 cat $exclude_file
 
 # Check if chrooted prompt.
