@@ -1,0 +1,19 @@
+# This file excludes locations from BSDTAR backup.
+
+# Not old backups                                                               
+/opt/backup/arch-full*                                                                   
+                                                                                
+# Not temporary files                                                           
+/tmp/*
+
+# Not the cache for pacman
+/var/cache/pacman/pkg/
+
+# Not the cache for paru
+/home/muesli/.config/paru
+
+# Not music or downloads
+/home/muesli/Downloads/*
+
+# Not virtual machines
+/home/muesli/VirtualBox_VM
