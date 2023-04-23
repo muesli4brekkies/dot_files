@@ -9,24 +9,23 @@ keypress=$(xinput query-state 12 | grep down);
 
 if [ -z "$keypress" ]
 then
-# If keypress is empty then decrement counter.
-    counter=$(( $counter -1 ))
+    counter=$(( $counter -1 )) # If keypress is empty then decrement counter.
+	
+    if [ $counter -lt 0 ]
+    then
+        # If counter less than 0, turn off keyboard leds
+	echo 0 > /sys/class/leds/tpacpi::kbd_backlight/brightness 
+	# Set counter to 0 to avoid variable walking off into negative infinity 
+	counter=0 
+    fi
 else
-# If $keypress populated, cat hardware brightness to brightness file. 
-# These paths will change based on hardware (asus:: rather than tpacpi:: for instance)
+    # If $keypress populated, cat hardware brightness to brightness file. 
+    # This path will change based on hardware (asus:: rather than tpacpi:: for instance)
     cat /sys/class/leds/tpacpi::kbd_backlight/brightness_hw_changed  \
     > /sys/class/leds/tpacpi::kbd_backlight/brightness 
 
-# Change this value to adjust the timeout duration
+    # Change this value to adjust the timeout duration
     counter=25 
-
-fi
-if [ $counter -lt 0 ]
-then
-# If counter less than 0, turn off keyboard leds
-    echo 0 > /sys/class/leds/tpacpi::kbd_backlight/brightness 
-# Set counter to 0 to avoid variable walking off into negative infinity 
-    counter=0 
 fi
 # Change this value to adjust polling rate (currently 1/5 second)
 sleep 0.2 
