@@ -9,10 +9,11 @@ keypress=$(xinput query-state 12 | grep down);
 
 if [ -z "$keypress" ]
 then
-    counter=$(( $counter -1 )) # If keypress is empty then decrement counter.
+# If keypress is empty then decrement counter.
+    counter=$(( $counter -1 ))
 else
 # If $keypress populated, cat hardware brightness to brightness file. 
-# This path will change based on hardware (asus:: rather than tpacpi:: for instance)
+# These paths will change based on hardware (asus:: rather than tpacpi:: for instance)
     cat /sys/class/leds/tpacpi::kbd_backlight/brightness_hw_changed  \
     > /sys/class/leds/tpacpi::kbd_backlight/brightness 
 
