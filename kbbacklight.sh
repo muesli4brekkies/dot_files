@@ -11,19 +11,22 @@ if [ -z "$keypress" ]
 then
     counter=$(( $counter -1 )) # If keypress is empty then decrement counter.
 else
+# If $keypress populated, cat hardware brightness to brightness file. 
+# This path will change based on hardware (asus:: rather than tpacpi:: for instance)
     cat /sys/class/leds/tpacpi::kbd_backlight/brightness_hw_changed  \
     > /sys/class/leds/tpacpi::kbd_backlight/brightness 
-# If keypress populated, cat hardware brightness level to brightness file. 
-# This path will change based on hardware (asus:: rather than tpacpi:: for instance)
-    counter=25 # Change this value to adjust the timeout duration
+
+# Change this value to adjust the timeout duration
+    counter=25 
+
 fi
 if [ $counter -lt 0 ]
 then
-    # If counter less than 0, turn off keyboard leds
+# If counter less than 0, turn off keyboard leds
     echo 0 > /sys/class/leds/tpacpi::kbd_backlight/brightness 
-    # Set counter to 0 to avoid variable walking off into negative infinity 
+# Set counter to 0 to avoid variable walking off into negative infinity 
     counter=0 
 fi
-# Adjust this value to change polling rate (currently 1/5 second)
+# Change this value to adjust polling rate (currently 1/5 second)
 sleep 0.2 
 done
