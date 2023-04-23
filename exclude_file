@@ -1,4 +1,4 @@
-# This file excludes locations from BSDTAR backup.
+# This file excludes locations from BSDTAR backup run by full_system_backup.sh.
 
 # Not old backups                                                               
 /opt/backup/arch-full*                                                                   
