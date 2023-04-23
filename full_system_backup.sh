@@ -7,8 +7,8 @@ backdest=/opt/backup
 
 # Labels for backup name
 PC=${HOSTNAME}
-pc=zenarch
-distro=arch
+pc=<PC NAME>
+distro=<DISTRO NAME>
 type=full
 date=$(date "+%F")
 backupfile="$backdest/$distro-$type-$date.tar.gz"
