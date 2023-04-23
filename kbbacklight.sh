@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # Fun little script for turning laptop keyboard backlight LEDs on and off responsively
+# Requires permissions to write to brightness file, see leds.rules file
 
 while : ; do
 # Polls xinput query-state for if a key is pressed. "12" corresponds to the keyboard on my system
